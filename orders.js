@@ -16,10 +16,10 @@ function cancelOrder(order) {
 }
 
 function calculateLoyaltyPoints(order) {
-const basePoints = order.total / 10;
-const isVip = order.total > 100;
-const points = isVip ? basePoints * 1.5 : basePoints;
-return Math.round(points);
+  const basePoints = order.total / 10;
+  const isVip = order.total > 100;
+  const points = isVip ? basePoints * 1.5 : basePoints;
+  const finalPoints = Math.round(points);
+  return order.total > 0 ? Math.max(finalPoints, 1) : finalPoints;
 }
-
 module.exports = { createOrder, applyDiscount, cancelOrder, calculateLoyaltyPoints };

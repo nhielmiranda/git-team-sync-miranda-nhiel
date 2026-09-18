@@ -23,10 +23,10 @@ assertEqual(cancelled.total, 0, 'cancel zeroes total');
 
 const loyaltyOrder = orders.createOrder([{ price: 20, qty: 3 }]);
 assertEqual(orders.calculateLoyaltyPoints(loyaltyOrder), 6, 'loyalty points for a $60 order');
-
 const roundingOrder = orders.createOrder([{ price: 65, qty: 1 }]);
 assertEqual(orders.calculateLoyaltyPoints(roundingOrder), 7, 'loyalty points round up for a $65 order');
-
+const tinyOrder = orders.createOrder([{ price: 3, qty: 1 }]); // total = 3
+assertEqual(orders.calculateLoyaltyPoints(tinyOrder), 1, 'tiny orders still earn a minimum of 1 point');
 const vipOrder = orders.createOrder([{ price: 60, qty: 2 }]); // total = 120
 assertEqual(orders.calculateLoyaltyPoints(vipOrder), 18, 'VIP bonus applies 1.5x for orders over $100');
 
